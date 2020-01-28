@@ -45,8 +45,10 @@
         <dd>
             <img src="@Model.AlbumArtUrl" alt="@Model.Artist" />
         </dd>
-
     </dl>
+    <p class="button">
+        @Html.ActionLink("Add to cart", "AddToCart", "ShoppingCart", new { id = Model.AlbumId }, "")
+    </p>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |

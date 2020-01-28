@@ -14,8 +14,7 @@ namespace MusicStore
         protected void Application_Start()
         {
             //inicializamos una base de datos de prueba 
-            Database.SetInitializer(
-            new Models.SampleData());
+            Database.SetInitializer(new MusicStore.Models.SampleData());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
