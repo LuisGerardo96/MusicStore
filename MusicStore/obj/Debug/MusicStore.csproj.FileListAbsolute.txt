@@ -440,3 +440,5 @@ C:\Users\Administrador\source\MusicStore\MusicStore\obj\Debug\MusicStore.csprojA
 C:\Users\Administrador\source\MusicStore\MusicStore\obj\Debug\MusicStore.csproj.CopyComplete
 C:\Users\Administrador\source\MusicStore\MusicStore\obj\Debug\MusicStore.dll
 C:\Users\Administrador\source\MusicStore\MusicStore\obj\Debug\MusicStore.pdb
+C:\Users\Administrador\source\MusicStore\MusicStore\obj\Debug\MusicStore.Migrations.first.resources
+C:\Users\Administrador\source\MusicStore\MusicStore\obj\Debug\MusicStore.csproj.GenerateResource.cache
