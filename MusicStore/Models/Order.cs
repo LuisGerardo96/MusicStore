@@ -13,6 +13,7 @@ namespace MusicStore.Models
         [ScaffoldColumn(false)]
         public System.DateTime OrderDate { get; set; }
         [ScaffoldColumn(false)]
+        [StringLength(500)]
         public string Username { get; set; }
         [Required(ErrorMessage = "First Name is required")]
         [DisplayName("First Name")]
@@ -47,6 +48,7 @@ namespace MusicStore.Models
         [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",
             ErrorMessage = "Email is is not valid.")]
         [DataType(DataType.EmailAddress)]
+        [StringLength(255)]
         public string Email { get; set; }
         [ScaffoldColumn(false)]
         public decimal Total { get; set; }

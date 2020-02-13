@@ -10,6 +10,7 @@ namespace MusicStore.Models
     {
         [Key]
         public int RecordId { get; set; }
+        [StringLength(1000)]
         public string CartId { get; set; }
         public int AlbumId { get; set; }
         public int Count { get; set; }
