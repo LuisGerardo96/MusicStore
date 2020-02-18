@@ -4,20 +4,25 @@
     ViewBag.Title = "Browse Albums";
 }
 
-<div class="genre">
-    <h3><em>@Model.Name</em> Albums</h3>
 
-    <ul id="album-list">
+    <h3>@Model.Name Albums</h3>
+    <div class="row">
+        
         @foreach (var album in Model.Albums)
         {
-            <li>
-                <a href="@Url.Action("Details",
-                    new { id = album.AlbumId })">
-                    <img alt="@album.Title"
-                         src="@album.AlbumArtUrl" />
-                    <span>@album.Title</span>
-                </a>
-            </li>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100">
+                    <a href="@Url.Action("Details",new { id = album.AlbumId })">
+                        <img class="card-img-top" src="@album.AlbumArtUrl" alt="@album.Title">
+                    </a>
+                    <div class="card-body">
+                        <h4 class="card-title"><a href="@Url.Action("Details","Store",new { id = album.AlbumId })">@album.Title</a></h4>
+                        <h5>@album.Price</h5>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                    </div>
+                </div>
+            </div>
         }
-    </ul>
-</div>
+    </div>
