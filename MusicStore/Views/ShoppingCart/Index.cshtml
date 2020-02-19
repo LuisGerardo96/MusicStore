@@ -33,11 +33,11 @@
             });
         </script>
         <h3>
-            <em>Review</em> your cart:
+            Review your cart:
         </h3>
-        <p class="button">
-            @Html.ActionLink("Checkout>> ", "AddressAndPayment", "Checkout")
-        </p>
+        <button type="button" class="btn btn-dark text-white" >
+            @Html.ActionLink("Checkout", "AddressAndPayment", "Checkout")
+        </button>
         <div id="update-message">
         </div>
         <table>
