@@ -5,7 +5,7 @@ using MusicStore.Models;
 
 namespace MvcMusicStore.Controllers
 {
-  
+  [HandleError]
     public class CheckoutController : Controller
     {
         MusicStoreEntities storeDB = new MusicStoreEntities();
@@ -37,10 +37,10 @@ namespace MvcMusicStore.Controllers
                     var cart = ShoppingCart.GetCart(this.HttpContext);
                     cart.CreateOrder(order);
 
-                    return RedirectToAction("Complete",new { id = order.OrderId });
+                    return RedirectToAction("Complete", new { id = order.OrderId });
                 }
             }
-            catch
+            catch 
             {
                 //Invalid - redisplay with errors
                 return View(order);
