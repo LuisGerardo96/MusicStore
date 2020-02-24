@@ -442,3 +442,8 @@ C:\Users\Administrador\source\MusicStore\MusicStore\obj\Debug\MusicStore.dll
 C:\Users\Administrador\source\MusicStore\MusicStore\obj\Debug\MusicStore.pdb
 C:\Users\Administrador\source\MusicStore\MusicStore\obj\Debug\MusicStore.Migrations.first.resources
 C:\Users\Administrador\source\MusicStore\MusicStore\obj\Debug\MusicStore.csproj.GenerateResource.cache
+C:\Users\Administrador\source\repos\MusicStore\MusicStore\bin\Oracle.ManagedDataAccess.dll
+C:\Users\Administrador\source\repos\MusicStore\MusicStore\bin\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.Migrations.first.resources
+C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.csproj.GenerateResource.cache
+C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.Migrations.loginmodel.resources

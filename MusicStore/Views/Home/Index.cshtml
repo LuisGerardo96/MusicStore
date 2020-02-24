@@ -40,6 +40,7 @@
                 <img class="card-img-top" src="@album.AlbumArtUrl" alt="@album.Title"></a>
                 <div class="card-body">
                     <h4 class="card-title"><a href="@Url.Action("Details","Store",new { id = album.AlbumId })">@album.Title</a></h4>
+                    <h5>@album.Artist.Name</h5>
                     <h5>@album.Price</h5>
                 </div>
                 <div class="card-footer">

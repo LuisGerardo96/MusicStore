@@ -141,17 +141,26 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\StoreManagerController.cs" />
+    <Compile Include="Filtros\CustomAuthenticationFilter.cs" />
+    <Compile Include="Filtros\CustomAuthorize.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Login\Role.cs" />
+    <Compile Include="Login\User.cs" />
     <Compile Include="Migrations\202002131859080_first.cs" />
     <Compile Include="Migrations\202002131859080_first.designer.cs">
       <DependentUpon>202002131859080_first.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002242011048_loginmodel.cs" />
+    <Compile Include="Migrations\202002242011048_loginmodel.designer.cs">
+      <DependentUpon>202002242011048_loginmodel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -304,6 +313,9 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="Views\Shared\NotFound.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -350,6 +362,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202002131859080_first.resx">
       <DependentUpon>202002131859080_first.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002242011048_loginmodel.resx">
+      <DependentUpon>202002242011048_loginmodel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
