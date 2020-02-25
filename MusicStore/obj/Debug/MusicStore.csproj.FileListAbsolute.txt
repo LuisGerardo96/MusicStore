@@ -447,3 +447,5 @@ C:\Users\Administrador\source\repos\MusicStore\MusicStore\bin\Oracle.ManagedData
 C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.Migrations.first.resources
 C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.csproj.GenerateResource.cache
 C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.Migrations.loginmodel.resources
+C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.Migrations.deleterequiredusername.resources
+C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.csproj.CoreCompileInputs.cache

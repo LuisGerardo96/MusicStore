@@ -9,7 +9,7 @@ namespace MusicStore.Filtros
     {
         public void OnAuthentication(AuthenticationContext filterContext)
         {
-            if (string.IsNullOrEmpty(Convert.ToString(filterContext.HttpContext.Session["UserId"])))
+            if (string.IsNullOrEmpty(Convert.ToString(filterContext.HttpContext.Session["UserName"])))
             {
                 filterContext.Result = new HttpUnauthorizedResult();
             }

@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using MusicStore.Filtros;
 using MusicStore.Models;
 
 namespace MvcMusicStore.Controllers
 {
-  [HandleError]
+    [HandleError]
+    [CustomAuthenticationFilter]
+    [CustomAuthorize("Normal", "Admin")]
     public class CheckoutController : Controller
     {
         MusicStoreEntities storeDB = new MusicStoreEntities();
-        
+
         
         // GET: /Checkout/AddressAndPayment
         public ActionResult AddressAndPayment()

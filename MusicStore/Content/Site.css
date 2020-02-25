@@ -25,3 +25,11 @@ textarea {
 ul{
     list-style:none;
 }
+
+ul.nav.navbar-nav.navbar-right li a {
+        border-color: #ffffff;
+        color: #ffffff;
+}
+#loginLink {
+    color: #fff7ff;
+}

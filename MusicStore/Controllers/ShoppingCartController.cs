@@ -2,10 +2,12 @@
 using System.Web.Mvc;
 using MusicStore.ViewsModels;
 using MusicStore.Models;
-
+using MusicStore.Filtros;
 
 namespace MvcMusicStore.Controllers
 {
+    [CustomAuthenticationFilter]
+    [CustomAuthorize("Normal", "Admin")]
     public class ShoppingCartController : Controller
     {
         MusicStoreEntities storeDB = new MusicStoreEntities();

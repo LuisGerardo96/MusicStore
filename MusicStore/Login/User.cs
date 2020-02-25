@@ -10,7 +10,6 @@ namespace MusicStore.Login
     {
         public int Id { get; set; }
         [StringLength (30)]
-        [Required]
         [Display(Name = "Nombre de usuario")]
         public string UserName { get; set; }
         [StringLength(50)]

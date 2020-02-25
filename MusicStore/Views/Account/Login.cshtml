@@ -1,4 +1,5 @@
 ﻿@model MusicStore.Login.User
+
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -15,14 +16,14 @@
         <div class="form-group">
             @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.PasswordFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -30,13 +31,15 @@
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Proceed" class="btn btn-default" />
             </div>
+            @ViewBag.Message
         </div>
     </div>
 }
 <div>
-    @Html.ActionLink("Back to List", "/")
+    @Html.ActionLink("Back to List", "Index")
 </div>
-<div>@Html.ActionLink("No tienes cuenta registrate","Register")</div>
+<div>@Html.ActionLink("No tienes cuenta registrate", "Register")</div>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

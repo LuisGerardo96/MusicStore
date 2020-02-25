@@ -42,7 +42,7 @@ namespace MusicStore.Controllers
             }
             else
             {
-               
+                ViewBag.Message("Something wrong");
                 return View(model);
             }
         }

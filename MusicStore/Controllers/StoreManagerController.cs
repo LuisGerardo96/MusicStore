@@ -9,20 +9,23 @@ using System.Web.Mvc;
 using MusicStore.Models;
 using System.Data.Entity.Infrastructure;
 using System.Threading.Tasks;
+using MusicStore.Filtros;
 
 namespace MusicStore.Controllers
 {
+    [CustomAuthenticationFilter]
     public class StoreManagerController : Controller
     {
         private MusicStoreEntities db = new MusicStoreEntities();
 
         // GET: StoreManager
+        [CustomAuthorize("Admin")]
         public ActionResult Index()
         {
             var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre);
             return View(albums.ToList());
         }
-
+        [CustomAuthorize("Admin")]
         // GET: StoreManager/Details/5
         public ActionResult Details(int? id)
         {
@@ -37,7 +40,7 @@ namespace MusicStore.Controllers
             }
             return View(album);
         }
-
+        [CustomAuthorize("Admin")]
         // GET: StoreManager/Create
         public ActionResult Create()
         {
@@ -51,6 +54,7 @@ namespace MusicStore.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize("Admin")]
         public ActionResult Create([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album)
         {
             if (ModelState.IsValid)
@@ -64,9 +68,10 @@ namespace MusicStore.Controllers
             ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
             return View(album);
         }
-      
-            
+
+
         // GET: StoreManager/Edit/5
+        [CustomAuthorize("Admin")]
         public async Task<ActionResult> Edit(int? id)
         {
             string[] fieldsToBind = new string[] { "GenreId", "ArtistId", "Title", "Price", "AlbumArtURL", "RowVersion" };
@@ -91,6 +96,7 @@ namespace MusicStore.Controllers
        
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize("Admin")]
         public ActionResult Edit([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album)
         {
             if (ModelState.IsValid)
@@ -160,6 +166,7 @@ namespace MusicStore.Controllers
         //    }
         //    return View(album);
         //}
+        [CustomAuthorize("Admin")]
         public async Task<ActionResult> Delete(int? id, bool? concurrencyError)
         {
             if (id == null)
@@ -192,6 +199,7 @@ namespace MusicStore.Controllers
      
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [CustomAuthorize("Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Album album = db.Albums.Find(id);
