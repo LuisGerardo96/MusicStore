@@ -448,4 +448,6 @@ C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.M
 C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.csproj.GenerateResource.cache
 C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.Migrations.loginmodel.resources
 C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.Migrations.deleterequiredusername.resources
-C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.csproj.CoreCompileInputs.cache
+C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.Migrations.validationlogin.resources
+C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.Migrations.changeUserNamepermitnull.resources
+C:\Users\Administrador\source\repos\MusicStore\MusicStore\obj\Debug\MusicStore.Migrations.changeforencript.resources

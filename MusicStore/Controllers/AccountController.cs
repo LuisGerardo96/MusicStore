@@ -23,8 +23,9 @@ namespace MusicStore.Controllers
             {
                 using (var context = new MusicStoreEntities())
                 {
+                    string passencript = Encrypt.GetSHA256(model.Password);
                     User user = context.Users
-                                       .Where(u => u.UserId == model.UserId && u.Password == model.Password)
+                                       .Where(u => u.UserId == model.UserId && u.Password == passencript)
                                        .FirstOrDefault();
 
                     if (user != null)
@@ -35,14 +36,14 @@ namespace MusicStore.Controllers
                     }
                     else
                     {
-                        ViewBag.Message("Invalid User Name or Password");
+                        ViewBag.Message = "Invalid data";
                         return View(model);
                     }
                 }
             }
             else
             {
-                ViewBag.Message("Something wrong");
+                ViewBag.Message = "Invalid data";
                 return View(model);
             }
         }
@@ -83,8 +84,8 @@ namespace MusicStore.Controllers
                  {
                     UserId = model.UserId,
                     UserName = model.UserName,
-                    Password = model.Password,
-                    RoleId = 2,
+                    Password = Encrypt.GetSHA256(model.Password),
+                    RoleId = 2
                  };
 
                  Context.Users.Add(user);

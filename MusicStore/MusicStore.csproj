@@ -152,6 +152,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Login\Encrypt.cs" />
     <Compile Include="Login\Role.cs" />
     <Compile Include="Login\User.cs" />
     <Compile Include="Migrations\202002131859080_first.cs" />
@@ -165,6 +166,18 @@
     <Compile Include="Migrations\202002251727382_deleterequiredusername.cs" />
     <Compile Include="Migrations\202002251727382_deleterequiredusername.designer.cs">
       <DependentUpon>202002251727382_deleterequiredusername.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002252005007_validationlogin.cs" />
+    <Compile Include="Migrations\202002252005007_validationlogin.designer.cs">
+      <DependentUpon>202002252005007_validationlogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002252031060_changeUserNamepermitnull.cs" />
+    <Compile Include="Migrations\202002252031060_changeUserNamepermitnull.designer.cs">
+      <DependentUpon>202002252031060_changeUserNamepermitnull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002271731419_changeforencript.cs" />
+    <Compile Include="Migrations\202002271731419_changeforencript.designer.cs">
+      <DependentUpon>202002271731419_changeforencript.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -320,6 +333,8 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -372,6 +387,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002251727382_deleterequiredusername.resx">
       <DependentUpon>202002251727382_deleterequiredusername.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002252005007_validationlogin.resx">
+      <DependentUpon>202002252005007_validationlogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002252031060_changeUserNamepermitnull.resx">
+      <DependentUpon>202002252031060_changeUserNamepermitnull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002271731419_changeforencript.resx">
+      <DependentUpon>202002271731419_changeforencript.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
