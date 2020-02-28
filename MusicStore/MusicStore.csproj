@@ -144,6 +144,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagenesController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\StoreManagerController.cs" />
@@ -178,6 +179,10 @@
     <Compile Include="Migrations\202002271731419_changeforencript.cs" />
     <Compile Include="Migrations\202002271731419_changeforencript.designer.cs">
       <DependentUpon>202002271731419_changeforencript.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002282000584_addimg.cs" />
+    <Compile Include="Migrations\202002282000584_addimg.designer.cs">
+      <DependentUpon>202002282000584_addimg.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -374,6 +379,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Imagenes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -396,6 +402,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002271731419_changeforencript.resx">
       <DependentUpon>202002271731419_changeforencript.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002282000584_addimg.resx">
+      <DependentUpon>202002282000584_addimg.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

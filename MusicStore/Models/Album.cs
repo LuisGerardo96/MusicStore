@@ -27,6 +27,8 @@ namespace MusicStore.Models
         [DisplayName("Album Art URL")]
         [StringLength(1024)]
         public string AlbumArtUrl { get; set; }
+
+        public byte[] Img { get; set; }
         public virtual Genre Genre { get; set; }
         public virtual Artist Artist { get; set; }
 

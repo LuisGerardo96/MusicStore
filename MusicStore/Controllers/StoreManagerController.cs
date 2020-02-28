@@ -55,10 +55,13 @@ namespace MusicStore.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomAuthorize("Admin")]
-        public ActionResult Create([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album)
+        public ActionResult Create([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album, HttpPostedFileBase File1)
         {
             if (ModelState.IsValid)
             {
+                var img = new byte[File1.ContentLength];   
+                File1.InputStream.Read(img, 0, File1.ContentLength);
+                album.Img = img;
                 db.Albums.Add(album);
                 db.SaveChanges();
                 return RedirectToAction("Index");
