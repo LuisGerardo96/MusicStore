@@ -33,3 +33,12 @@ ul.nav.navbar-nav.navbar-right li a {
 #loginLink {
     color: #fff7ff;
 }
+
+.albumimg {
+    height: 150px;
+    margin: 20px;
+}
+img.albumimg {
+    height: 150px;
+    margin: 20px;
+}

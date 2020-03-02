@@ -43,7 +43,7 @@
             <p>Album Image:</p>
         </dt>
         <dd>
-            <img src="@Model.AlbumArtUrl" alt="@Model.Artist" />
+            <img class="albumimg" src="@Url.Action("Verimagen", "Imagenes", new { id = Model.AlbumId })" />
         </dd>
     </dl>
     <p class="button">

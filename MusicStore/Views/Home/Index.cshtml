@@ -37,7 +37,8 @@
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
                 <a href="@Url.Action("Details","Store",new { id = album.AlbumId })">
-                <img class="card-img-top" src="@album.AlbumArtUrl" alt="@album.Title"></a>
+                    <img class="card-img-top" src="@Url.Action("Verimagen", "Imagenes", new { id = album.AlbumId })" alt="@album.Title" />
+                </a>
                 <div class="card-body">
                     <h4 class="card-title"><a href="@Url.Action("Details","Store",new { id = album.AlbumId })">@album.Title</a></h4>
                     <h5>@album.Artist.Name</h5>

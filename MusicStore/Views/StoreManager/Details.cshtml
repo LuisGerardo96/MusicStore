@@ -44,11 +44,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.AlbumArtUrl)
+            <p>Album Image:</p>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.AlbumArtUrl)
+            <img class="albumimg" src="@Url.Action("Verimagen", "Imagenes", new { id = Model.AlbumId })" />
         </dd>
 
     </dl>

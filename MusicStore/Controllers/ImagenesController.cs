@@ -17,7 +17,8 @@ namespace MusicStore.Controllers
             
             if (datos != null)
             {
-                return File(datos, "image/png"); // Might need to adjust the content type based on your actual image type
+             
+                return File(datos, "image/jpg;base64"); 
             }
             return null;
         }

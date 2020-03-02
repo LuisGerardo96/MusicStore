@@ -46,7 +46,7 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-           <img src="@Html.DisplayFor(modelItem => item.AlbumArtUrl)" />
+            <img class="albumimg" src="@Url.Action("Verimagen", "Imagenes", new { id = item.AlbumId })" />
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.AlbumId }) |

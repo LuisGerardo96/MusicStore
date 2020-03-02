@@ -55,7 +55,7 @@ namespace MusicStore.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomAuthorize("Admin")]
-        public ActionResult Create([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album, HttpPostedFileBase File1)
+        public ActionResult Create([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price")] Album album, HttpPostedFileBase File1)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +77,7 @@ namespace MusicStore.Controllers
         [CustomAuthorize("Admin")]
         public async Task<ActionResult> Edit(int? id)
         {
-            string[] fieldsToBind = new string[] { "GenreId", "ArtistId", "Title", "Price", "AlbumArtURL", "RowVersion" };
+            string[] fieldsToBind = new string[] { "GenreId", "ArtistId", "Title", "Price"};
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -100,7 +100,7 @@ namespace MusicStore.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomAuthorize("Admin")]
-        public ActionResult Edit([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price,AlbumArtUrl")] Album album)
+        public ActionResult Edit([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price")] Album album)
         {
             if (ModelState.IsValid)
             {

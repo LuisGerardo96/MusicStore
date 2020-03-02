@@ -15,27 +15,27 @@ namespace MusicStore.Models
         [ScaffoldColumn(false)]
         [StringLength(500)]
         public string Username { get; set; }
-        [RegularExpression("^[a-zA-Z]+(([.][a-zA-Z ])?[a-zA-Z]*)*$",
+        [RegularExpression("^[a-zA-Z]+(?:[\\s.]+[a-zA-Z]+)*$",
             ErrorMessage= "Estas usando caracteres no permitidos")]
         [Required(ErrorMessage = "First Name is required")]
         [DisplayName("First Name")]
         [StringLength(160)]
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Last Name is required")]
-        [RegularExpression("^[a-zA-Z]+(([.][a-zA-Z ])?[a-zA-Z]*)*$",
+        [RegularExpression("^[a-zA-Z]+(?:[\\s.]+[a-zA-Z]+)*$",
             ErrorMessage = "Estas usando caracteres no permitidos")]
         [DisplayName("Last Name")]
         [StringLength(160)]
         public string LastName { get; set; }
         [Required(ErrorMessage = "Address is required")]
         [StringLength(70)]
-        [RegularExpression("^\\d+\\s[A - z]+\\s[A - z]+",ErrorMessage ="Caracter no permitido")]
+        [RegularExpression("^[#.0-9a-zA-Z\\s,-]+$", ErrorMessage ="Caracter no permitido")]
         public string Address { get; set; }
         [Required(ErrorMessage = "City is required")]
         [StringLength(40)]
-        [RegularExpression("^\\d+\\s[A - z]+\\s[A - z]+", ErrorMessage = "Caracter no permitido")]
+        [RegularExpression("^[a-zA-Z]+(?:[\\s.]+[a-zA-Z]+)*$", ErrorMessage = "Caracter no permitido")]
         public string City { get; set; }
-        [RegularExpression("^\\d+\\s[A - z]+\\s[A - z]+", ErrorMessage = "Caracter no permitido")]
+        [RegularExpression("^[a-zA-Z]+(?:[\\s.]+[a-zA-Z]+)*$", ErrorMessage = "Caracter no permitido")]
         [Required(ErrorMessage = "State is required")]
         [StringLength(40)]
         public string State { get; set; }
@@ -44,12 +44,12 @@ namespace MusicStore.Models
         [DisplayName("Postal Code")]
         [StringLength(10)]
         public string PostalCode { get; set; }
-        [RegularExpression("^[a-zA-Z]{1,58}$",
+        [RegularExpression("^[a-zA-Z]+(?:[\\s.]+[a-zA-Z]+)*$",
            ErrorMessage = "No usar caracteres especiales")]
         [Required(ErrorMessage = "Country is required")]
         [StringLength(40)]
         public string Country { get; set; }
-        [RegularExpression("^(([+]{1}[0-9]{2}|0)[0-9]{9})$",
+        [RegularExpression("^(([0-9]{2}|0)[0-9]{8})$",
             ErrorMessage = "Estas usando caracteres no permitidos")]
         [Required(ErrorMessage = "Phone is required")]
         [StringLength(24)]
