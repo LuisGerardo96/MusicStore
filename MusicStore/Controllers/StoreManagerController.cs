@@ -25,21 +25,29 @@ namespace MusicStore.Controllers
             var albums = db.Albums.Include(a => a.Artist).Include(a => a.Genre);
             return View(albums.ToList());
         }
-        [CustomAuthorize("Admin")]
-        // GET: StoreManager/Details/5
-        public ActionResult Details(int? id)
+        [HttpPost]
+        public ActionResult Index(string Name)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Album album = db.Albums.Find(id);
-            if (album == null)
-            {
-                return HttpNotFound();
-            }
-            return View(album);
+
+            List<Album> albunes = db.Albums.Where(e => e.Artist.Name.Contains(Name)).ToList();
+            return View(albunes);
         }
+
+        //[CustomAuthorize("Admin")]
+        //// GET: StoreManager/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Album album = db.Albums.Find(id);
+        //    if (album == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(album);
+        //}
         [CustomAuthorize("Admin")]
         // GET: StoreManager/Create
         public ActionResult Create()
