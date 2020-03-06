@@ -1,10 +1,11 @@
 ﻿@model IEnumerable<MusicStore.Models.Album>
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 @{
     ViewBag.Title = "Index";
 }
+    <div id="maindiv">
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
-            
+        <div class="container">
             <div class="row">
                 <div class="col-md-5">
                     <div class="input-group">
@@ -16,47 +17,32 @@
                     <a href="@Url.Action("Create", "StoreManager")" id="add">Create</a>
                 </div>
             </div>
-            <div class="clearfix">&nbsp;</div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table class="table table-bordered table-striped" id="tbdata">
-                            <thead>
-                                <tr class="success">
-                                    <th class="text-center">@Html.DisplayNameFor(model => model.Title)</th>
-                                    <th class="text-center">@Html.DisplayNameFor(model => model.Artist)</th>
-                                    <th class="text-center">@Html.DisplayNameFor(model => model.Genre)</th>
-                                    <th class="text-center">@Html.DisplayNameFor(model => model.Price)</th>
-                                    <th class="text-center">Image</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model)
-                                {
-                                    <tr>
-                                        <td class="id">@item.Title</td>
-                                        <td>@item.Artist.Name</td>
-                                        <td>@item.Genre.Name</td>
-                                        <td>@item.Price</td>
-                                        <td>
-                                            <img class="albumimg" src="@Url.Action("Verimagen", "Imagenes", new { id = item.AlbumId })" />
-                                        </td>
-                                        <td class="text-center"><a href="@Url.Action("Edit", "StoreManager", new { @id = @item.AlbumId })" class="openDialog-Edit">Edit</a></td>
-                                        <td class="text-center"><a href="@Url.Action("Delete", "StoreManager", new { @id = @item.AlbumId })">Delete</a></td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped" id="tbdata">
+                        <thead>
+                            <tr class="success">
+                                <th class="text-center">@Html.DisplayNameFor(model => model.Title)</th>
+                                <th class="text-center">@Html.DisplayNameFor(model => model.Artist)</th>
+                                <th class="text-center">@Html.DisplayNameFor(model => model.Genre)</th>
+                                <th class="text-center">@Html.DisplayNameFor(model => model.Price)</th>
+                                <th class="text-center">Image</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                            @Html.Partial("_Tableview")
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
 
-        @*<div class="modal fade" id="addmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addmodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">Add User Details</h4>
+                        <h4 class="modal-title" id="myModalLabel">Add Album</h4>
                     </div>
                     <div class="divForAdd">
                     </div>
@@ -69,52 +55,55 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Update User Details</h4>
+                        <h4 class="modal-title">Update Album</h4>
                     </div>
-                    <div class="divForCreate">
+                    <div class="divForEdit">
                     </div>
                 </div>
             </div>
-        </div>*@
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#add').click(function (event) {
-            event.preventDefault();
-            $.get(this.href, function (response) {
-                $('.divForAdd').html(response);
+        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#add').click(function (e) {
+                    e.preventDefault();
+                    $.get(this.href, function (response) {
+                        $('.divForAdd').html(response);
+                    });
+                    $('#addmodel').modal({
+                        backdrop: 'static',
+                    }, 'show');
+                }); 
+
+                $('.openDialog-Edit').click(function (event) {
+                    event.preventDefault();
+                    $.get(this.href, function (response) {
+                        $('.divForEdit').html(response);
+                    });
+                    $('#editmodel').modal({
+                        backdrop: 'static',
+                    }, 'show');
+                });
+
+
+                $('#searchbutton').click(function (e) {
+                    var name = $('#search-box').val();
+                    e.preventDefault();
+                    $.ajax({
+                        url: "/StoreManager/Index",
+                        type: "POST",
+                        data: { 'Name': name },
+                        success: function (data) {
+                              
+                            $('#tbody').html(data);
+                        },
+                        error: function () {
+                            alert("An error has occured!!!");
+                        }
+                    });
+                });
+                     
+
             });
-            $('#addmodel').modal({
-                backdrop: 'static',
-            }, 'show');
-        });
+        </script>
 
-        $('.openDialog-Edit').click(function (event) {
-            event.preventDefault();
-            $.get(this.href, function (response) {
-                $('.divForCreate').html(response);
-            });
-            $('#editmodel').modal({
-                backdrop: 'static',
-            }, 'show');
-        });
-
-
-        $('#searchbutton').click(function (e) {
-            var name = $('#search-box').val();
-            e.preventDefault();
-            $.ajax({
-                url: "/StoreManager/Index",
-                type: "Post",
-                data: { 'Name': name },
-                success: function (data) {
-                    console.log(data);
-                    $('#tbdata').html(data);
-                },
-                error: function () {
-                    alert("An error has occured!!!");
-                }
-            });
-        });
-
-    });
-</script>
+    </div>

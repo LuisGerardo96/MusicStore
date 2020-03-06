@@ -26,11 +26,11 @@ namespace MusicStore.Controllers
             return View(albums.ToList());
         }
         [HttpPost]
-        public ActionResult Index(string Name)
+        public PartialViewResult Index(string Name)
         {
 
             List<Album> albunes = db.Albums.Where(e => e.Artist.Name.Contains(Name)).ToList();
-            return View(albunes);
+            return PartialView("_Tableview",albunes);
         }
 
         //[CustomAuthorize("Admin")]
@@ -50,11 +50,11 @@ namespace MusicStore.Controllers
         //}
         [CustomAuthorize("Admin")]
         // GET: StoreManager/Create
-        public ActionResult Create()
+        public PartialViewResult Create()
         {
             ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name");
             ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name");
-            return View();
+            return PartialView("_Create");
         }
 
         // POST: StoreManager/Create
@@ -77,7 +77,7 @@ namespace MusicStore.Controllers
 
             ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
             ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
-            return View(album);
+            return PartialView("_Create",album);
         }
 
 
@@ -98,11 +98,11 @@ namespace MusicStore.Controllers
                 ModelState.AddModelError(string.Empty, "Unable to save changes. The department was deleted by another user.");
                 ViewBag.GenreID = new SelectList(db.Genres, "GenreId", "Name", albundeleted.GenreId);
                 ViewBag.ArtistID = new SelectList(db.Artists, "ArtistId", "Name", albundeleted.ArtistId);
-                return View(albundeleted);
+                return PartialView("_Edit",albundeleted);
             }
             ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", albumupdate.ArtistId);
             ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", albumupdate.GenreId);
-            return View(albumupdate);
+            return PartialView("_Edit",albumupdate);
         }
        
         [HttpPost]
@@ -177,41 +177,41 @@ namespace MusicStore.Controllers
         //    }
         //    return View(album);
         //}
-        [CustomAuthorize("Admin")]
-        public async Task<ActionResult> Delete(int? id, bool? concurrencyError)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Album album = await db.Albums.FindAsync(id);
-            if (album == null)
-            {
-                if (concurrencyError.GetValueOrDefault())
-                {
-                    return RedirectToAction("Index");
-                }
-                return HttpNotFound();
-            }
+        //[CustomAuthorize("Admin")]
+        //public async Task<ActionResult> Delete(int? id, bool? concurrencyError)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Album album = await db.Albums.FindAsync(id);
+        //    if (album == null)
+        //    {
+        //        if (concurrencyError.GetValueOrDefault())
+        //        {
+        //            return RedirectToAction("Index");
+        //        }
+        //        return HttpNotFound();
+        //    }
 
-            if (concurrencyError.GetValueOrDefault())
-            {
-                ViewBag.ConcurrencyErrorMessage = "The record you attempted to delete "
-                    + "was modified by another user after you got the original values. "
-                    + "The delete operation was canceled and the current values in the "
-                    + "database have been displayed. If you still want to delete this "
-                    + "record, click the Delete button again. Otherwise "
-                    + "click the Back to List hyperlink.";
-            }
+        //    if (concurrencyError.GetValueOrDefault())
+        //    {
+        //        ViewBag.ConcurrencyErrorMessage = "The record you attempted to delete "
+        //            + "was modified by another user after you got the original values. "
+        //            + "The delete operation was canceled and the current values in the "
+        //            + "database have been displayed. If you still want to delete this "
+        //            + "record, click the Delete button again. Otherwise "
+        //            + "click the Back to List hyperlink.";
+        //    }
 
-            return View(album);
-        }
+        //    return View(album);
+        //}
 
      
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        
+        [HttpGet]
         [CustomAuthorize("Admin")]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
             Album album = db.Albums.Find(id);
             db.Albums.Remove(album);

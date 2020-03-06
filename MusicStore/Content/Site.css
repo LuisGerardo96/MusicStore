@@ -42,3 +42,13 @@ img.albumimg {
     height: 150px;
     margin: 20px;
 }
+
+div.row {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding-left: 13px;
+}
+
+.styletb {
+    height: 100px;
+}
