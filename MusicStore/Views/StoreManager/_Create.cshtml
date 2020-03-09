@@ -1,13 +1,13 @@
 ﻿@model MusicStore.Models.Album
 
-<h2>Create</h2>
+
 
 @using (Html.BeginForm("Create", "StoreManager", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="modal-body">
         <div class="form-horizontal">
-            <h4>Album</h4>
+            <h4>Create Album</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
