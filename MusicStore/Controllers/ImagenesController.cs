@@ -22,5 +22,10 @@ namespace MusicStore.Controllers
             }
             return null;
         }
+
+        public ActionResult Updateimage(byte [] data)
+        {
+            
+        }
     }
 }

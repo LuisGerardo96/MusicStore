@@ -52,3 +52,8 @@ div.row {
 .styletb {
     height: 100px;
 }
+
+#imagePreview img {
+    width: 150;
+    height: 150px;
+}

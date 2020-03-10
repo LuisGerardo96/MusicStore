@@ -10,6 +10,7 @@ using MusicStore.Models;
 using System.Data.Entity.Infrastructure;
 using System.Threading.Tasks;
 using MusicStore.Filtros;
+using System.IO;
 
 namespace MusicStore.Controllers
 {
@@ -67,12 +68,25 @@ namespace MusicStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                var img = new byte[File1.ContentLength];   
-                File1.InputStream.Read(img, 0, File1.ContentLength);
-                album.Img = img;
-                db.Albums.Add(album);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                var filext = Path.GetExtension(File1.FileName).Substring(1);
+                if (!supportedTypes.Contains(filext))
+                {
+                    ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
+                    ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
+                    ViewBag.Errorext = "UPLOAD FILES WITH EXTENSION JPG,JPEG,PNG";
+                    return PartialView("_Create", album);
+                }
+                else
+                {
+                    var img = new byte[File1.ContentLength];
+                    File1.InputStream.Read(img, 0, File1.ContentLength);
+                    album.Img = img;
+                    db.Albums.Add(album);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                 
+                }
             }
 
             ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);

@@ -56,6 +56,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
+                    <img class="styletb" src="@Url.Action("Verimagen", "Imagenes", new { id = Model.AlbumId })" />
                     <input type="file" id="file1" name="file1" />
                 </div>
             </div>
