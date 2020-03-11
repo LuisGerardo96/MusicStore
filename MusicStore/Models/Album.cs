@@ -18,7 +18,7 @@ namespace MusicStore.Models
         public int GenreId { get; set; }
         [DisplayName("Artist")]
         public int ArtistId { get; set; }
-        [Required(ErrorMessage = "An Album Title is required")]
+        [Required(ErrorMessage = "El Album Title es obligatorio")]
         [StringLength(160)]
         public string Title { get; set; }
         [Range(0.01, 100.00,

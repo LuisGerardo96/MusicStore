@@ -31,7 +31,7 @@ namespace MusicStore.Controllers
         {
 
             List<Album> albunes = db.Albums.Where(e => e.Artist.Name.Contains(Name)).ToList();
-            return PartialView("_Tableview",albunes);
+            return PartialView("_Tableview", albunes);
         }
 
         //[CustomAuthorize("Admin")]
@@ -68,30 +68,40 @@ namespace MusicStore.Controllers
         {
             if (ModelState.IsValid)
             {
-                var supportedTypes = new[] { "jpg", "jpeg", "png" };
-                var filext = Path.GetExtension(File1.FileName).Substring(1);
-                if (!supportedTypes.Contains(filext))
+                if (File1 != null && File1.ContentLength > 0)
                 {
-                    ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
-                    ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
-                    ViewBag.Errorext = "UPLOAD FILES WITH EXTENSION JPG,JPEG,PNG";
-                    return PartialView("_Create", album);
+                    var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                    var filext = Path.GetExtension(File1.FileName).Substring(1);
+                    if (!supportedTypes.Contains(filext))
+                    {
+                        ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
+                        ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
+                        ViewBag.Errorext = "UPLOAD FILES WITH EXTENSION JPG,JPEG,PNG";
+                        return PartialView("_Create", album);
+                    }
+                    else
+                    {
+                        var img = new byte[File1.ContentLength];
+                        File1.InputStream.Read(img, 0, File1.ContentLength);
+                        album.Img = img;
+                        db.Albums.Add(album);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+
+                    }
                 }
                 else
                 {
-                    var img = new byte[File1.ContentLength];
-                    File1.InputStream.Read(img, 0, File1.ContentLength);
-                    album.Img = img;
-                    db.Albums.Add(album);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                 
+                    ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
+                    ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
+                    ViewBag.Errorext = "File required";
+                    return PartialView("_Create", album);
                 }
             }
 
             ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
             ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
-            return PartialView("_Create",album);
+            return PartialView("_Create", album);
         }
 
 
@@ -99,7 +109,7 @@ namespace MusicStore.Controllers
         [CustomAuthorize("Admin")]
         public async Task<ActionResult> Edit(int? id)
         {
-            string[] fieldsToBind = new string[] { "GenreId", "ArtistId", "Title", "Price"};
+            string[] fieldsToBind = new string[] { "GenreId", "ArtistId", "Title", "Price" };
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -112,21 +122,44 @@ namespace MusicStore.Controllers
                 ModelState.AddModelError(string.Empty, "Unable to save changes. The department was deleted by another user.");
                 ViewBag.GenreID = new SelectList(db.Genres, "GenreId", "Name", albundeleted.GenreId);
                 ViewBag.ArtistID = new SelectList(db.Artists, "ArtistId", "Name", albundeleted.ArtistId);
-                return PartialView("_Edit",albundeleted);
+                return PartialView("_Edit", albundeleted);
             }
             ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", albumupdate.ArtistId);
             ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", albumupdate.GenreId);
-            return PartialView("_Edit",albumupdate);
+            return PartialView("_Edit", albumupdate);
         }
-       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [CustomAuthorize("Admin")]
-        public ActionResult Edit([Bind(Include = "AlbumId,GenreId,ArtistId,Title,Price")] Album album)
+        public ActionResult Edit(Album album,HttpPostedFileBase File1)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(album).State = EntityState.Modified;
+                var updatealbum = db.Albums.Find(album.AlbumId);
+                updatealbum.GenreId = album.GenreId;
+                updatealbum.ArtistId = album.ArtistId;
+                updatealbum.Title = album.Title;
+                updatealbum.Price = album.Price;
+                if (File1 != null && File1.ContentLength > 0)
+                {
+                    var supportedTypes = new[] { "jpg", "jpeg", "png" };
+                    var filext = Path.GetExtension(File1.FileName).Substring(1);
+                    if (!supportedTypes.Contains(filext))
+                    {
+                        ViewBag.Errorext = "UPLOAD FILES WITH EXTENSION JPG,JPEG,PNG";
+                        ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
+                        ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
+                        return View(album);
+                    }
+                    else
+                    {
+                        var img = new byte[File1.ContentLength];
+                        File1.InputStream.Read(img, 0, File1.ContentLength);
+                        updatealbum.Img = img;
+                    }
+                }
+                db.Entry(updatealbum).State = EntityState.Modified;
                 db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -221,8 +254,8 @@ namespace MusicStore.Controllers
         //    return View(album);
         //}
 
-     
-        
+
+
         [HttpGet]
         [CustomAuthorize("Admin")]
         public ActionResult Delete(int id)

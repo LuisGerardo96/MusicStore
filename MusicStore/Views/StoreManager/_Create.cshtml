@@ -29,7 +29,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control",required ="required"  } })
                     @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -37,7 +37,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" ,required ="required"} })
                     @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -53,7 +53,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Img, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <input type="file" name="file1" id="file1" onchange="return fileValidation()" />
+                    <input type="file" name="file1" id="file1" onchange="return fileValidation()"required />
                     <div id="imagePreview"></div>
                 </div>
             </div>
