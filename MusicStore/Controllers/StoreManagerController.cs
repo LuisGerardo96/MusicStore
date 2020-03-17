@@ -150,7 +150,7 @@ namespace MusicStore.Controllers
                         ViewBag.Errorext = "UPLOAD FILES WITH EXTENSION JPG,JPEG,PNG";
                         ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
                         ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
-                        return View(album);
+                        return PartialView("_Edit",album);
                     }
                     else
                     {
@@ -165,7 +165,7 @@ namespace MusicStore.Controllers
             }
             ViewBag.GenreId = new SelectList(db.Genres, "GenreId", "Name", album.GenreId);
             ViewBag.ArtistId = new SelectList(db.Artists, "ArtistId", "Name", album.ArtistId);
-            return View(album);
+            return PartialView("_Edit",album);
         }
 
 

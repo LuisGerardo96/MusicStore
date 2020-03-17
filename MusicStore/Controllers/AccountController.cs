@@ -23,28 +23,30 @@ namespace MusicStore.Controllers
             {
                 using (var context = new MusicStoreEntities())
                 {
-                    string passencript = Encrypt.GetSHA256(model.Password);
                     User user = context.Users
-                                       .Where(u => u.UserId == model.UserId && u.Password == passencript)
+                                       .Where(u => u.UserId == model.UserId && u.Password == model.Password)
                                        .FirstOrDefault();
 
                     if (user != null)
                     {
                         Session["UserName"] = user.UserName;
                         Session["UserId"] = user.UserId;
-                        return RedirectToAction("Index", "Home");
+                        if (user.RoleId == 1) { return RedirectToAction("Index", "StoreManager"); }
+                        else { return RedirectToAction("Index", "Home"); }
                     }
                     else
                     {
+                        ModelState.Clear();
                         ViewBag.Message = "Invalid data";
-                        return View(model);
+                        return View();
                     }
                 }
             }
             else
             {
+                ModelState.Clear();
                 ViewBag.Message = "Invalid data";
-                return View(model);
+                return View();
             }
         }
 
