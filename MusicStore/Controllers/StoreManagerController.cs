@@ -107,14 +107,14 @@ namespace MusicStore.Controllers
 
         // GET: StoreManager/Edit/5
         [CustomAuthorize("Admin")]
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             string[] fieldsToBind = new string[] { "GenreId", "ArtistId", "Title", "Price" };
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var albumupdate = await db.Albums.FindAsync(id);
+            var albumupdate = db.Albums.Find(id);
             if (albumupdate == null)
             {
                 Album albundeleted = new Album();

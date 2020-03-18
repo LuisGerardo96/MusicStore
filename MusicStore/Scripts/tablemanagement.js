@@ -35,6 +35,7 @@
                 $('#tbody').html(data);},
                 error: function () {
                     alert("An error has occured!!!");
+                    document.getElementById("search-box").value ="";
                 }
             });
         });

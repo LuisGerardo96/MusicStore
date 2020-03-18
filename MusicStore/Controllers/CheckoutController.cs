@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using MusicStore.Filtros;
 using MusicStore.Models;
@@ -30,8 +31,10 @@ namespace MvcMusicStore.Controllers
             try
             {
                 {
-                    order.Username = User.Identity.Name;
+                    order.Username = Convert.ToString(HttpContext.Session["UserName"]);
                     order.OrderDate = DateTime.Now;
+                    var total = ShoppingCart.GetCart(this.HttpContext);
+                    order.Total = total.GetTotal();
 
                     //Save Order
                     storeDB.Orders.Add(order);
@@ -53,8 +56,10 @@ namespace MvcMusicStore.Controllers
         // GET: /Checkout/Complete
         public ActionResult Complete(int id)
         {
+
+            var username= Convert.ToString(HttpContext.Session["UserName"]);
             // Validate customer owns this order
-            bool isValid = storeDB.Orders.Any(o => o.OrderId == id && o.Username == User.Identity.Name);
+            bool isValid = storeDB.Orders.Any(o => o.OrderId == id && o.Username == username);
 
             if (isValid)
             {
